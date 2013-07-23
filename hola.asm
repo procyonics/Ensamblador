@@ -19,7 +19,7 @@
 ;=============================================================================
 PORTA   	EQU     0X05    
 PORTB   	EQU     0X06    
-ESTADO  	EQU     0X03    
+STATUS  	EQU     0X03    
 W       	EQU     0
 ;=============================================================================
 ;	Inicialización del microcontrolador
@@ -49,7 +49,12 @@ INICIALIZA_MC
 ;  	Programa principal
 ;=============================================================================
 INICIO
-			MOVF	PORTA,W			; Lee el estado de PORTA y lo copia en W
+			MOVF	PORTA, W		; Lee el estado de PORTA y lo copia en W
+			ANDLW	B'00000011'		; Enmascara los 2 primeros bits de W
+			SUBLW	B'00000011'		; Restamos estos bits a W
+			BTFSS	STATUS, Z		; Si la resta fue exacta saltara una linea
+			CLRF	PORTB			; Borra el puerto de salida
+			MOVLW	B'00000001'		; Mueve el valor a W
 			MOVWF	PORTB			; Mueve el valor de W a PORTB
 			GOTO	INICIO			; Salta a la etiqueta INICIO
 ;=============================================================================
