@@ -11,8 +11,8 @@
 ;=============================================================================
 ;   Configuración para el compilador
 ;=============================================================================
-        LIST    p=16F886            ; Procesador utilizado
-        INCLUDE "P16F886.INC"       ; Libreria de direcciones correspondientes
+            LIST    p=16F886        ; Procesador utilizado
+            INCLUDE "P16F886.INC"   ; Libreria de direcciones correspondientes
                                     ; al PIC
 ;=============================================================================
 ;   Área de equivalencias
@@ -34,7 +34,6 @@ INICIALIZA_MC
             MOVLW   B'1100000'      ; Escribe este valor en el acumulador
             MOVWF   OSCCON          ; Mueve este valor al registro OSCCON
                                     ; '11000000' = 4 MHz
-
             BANKSEL ANSELH          ; Cambio al banco del registro ANSELH,
             CLRF    ANSELH          ; se borra el registro ANSELH y ANSEL
             MOVLW   B'0000000'      ; lo que configura las entradas como
@@ -50,9 +49,16 @@ INICIO
             ANDLW   MASCARA         ; Enmascara los 2 primeros bits de W
             SUBLW   MASCARA         ; Restamos estos bits a W
             BTFSS   STATUS, Z       ; Si la resta fue exacta saltara una linea
-            CLRF    PORTB           ; Borra el puerto de salida
+            GOTO    APAGAR
+            GOTO    PRENDER
+
+PRENDER
             MOVLW   B'00000001'     ; Mueve el valor a W
             MOVWF   PORTB           ; Mueve el valor de W a PORTB
+            GOTO    INICIO          ; Salta a la etiqueta INICIO
+
+APAGAR
+            CLRF    PORTB           ; Borra el puerto de salida
             GOTO    INICIO          ; Salta a la etiqueta INICIO
 ;=============================================================================
 ;   Palabras de configuración del microcontrolador
