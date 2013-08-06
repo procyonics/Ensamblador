@@ -49,8 +49,8 @@ INICIO
             ANDLW   MASCARA         ; Enmascara los 2 primeros bits de W
             SUBLW   MASCARA         ; Restamos estos bits a W
             BTFSS   STATUS, Z       ; Si la resta fue exacta saltara una linea
-            GOTO    APAGAR
-            GOTO    PRENDER
+            GOTO    APAGAR          ; Salta a la etiquita APAGAR
+            GOTO    PRENDER         ; Salta a la etiqueta PRENDER
 
 PRENDER
             MOVLW   B'00000001'     ; Mueve el valor a W
