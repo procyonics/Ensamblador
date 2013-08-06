@@ -5,7 +5,7 @@
 ;Descripción:   El microcontrolador dará como salida un 1 logico, cuando tenga
 ;               como entrada 1 logico en dos de sus entradas.
 ;Modelo:        PIC16F886 - Oscilador interno - 4MHz
-;Autor:         robblack00_7
+;Autor:         robblack00_7@procyonics.com
 ;Fecha:         22-Julio-2013
 ;Versión:       0.1
 ;=============================================================================
