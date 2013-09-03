@@ -58,10 +58,10 @@ APAGAR
                 GOTO    ESPERA          ; Salta a la etiqueta ESPERA
 
 ESPERA
-                NOP
-                NOP
-                NOP
-                NOP
+                NOP                     ; No hace nada
+                NOP                     ; No hace nada
+                NOP                     ; No hace nada
+                NOP                     ; No hace nada
                 GOTO    INICIO          ; Salta a la etiqueta INICIO
 ;=============================================================================
 ;   Palabras de configuración del microcontrolador
